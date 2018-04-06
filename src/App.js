@@ -11,8 +11,11 @@ class App extends Component {
       message: '',
       mediums: [],
       areas: [],
-      showTv: false,
-      showArea: true,
+      showAll: true,
+      showSiren: true,
+      showTv: true,
+      showRadio: true,
+      showText: true,
     };
   }
 
