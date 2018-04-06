@@ -11,9 +11,20 @@ class App extends Component {
       message: '',
       mediums: [],
       areas: [],
+      showModal: false
     };
+
+  this.handleOpenModal = this.handleOpenModal.bind(this);
+  this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
+  handleOpenModal () {
+    this.setState({ showModal: true });
+  }
+
+  handleCloseModal () {
+    this.setState({ showModal: false });
+  }
   render() {
     return (
       <Grid stackable container>
@@ -83,10 +94,13 @@ class App extends Component {
             </Segment.Group>
           </Grid.Column>
           <Grid.Column width={2} verticalAlign='middle'>
-            <Modal trigger={<Button size='large' content='Submit' color={this.state.color} onClick={this.submit}/>}>
-              <Modal.Conten>
-
-              </Modal.Conten>
+            <Modal trigger={<Button size='large' content='Submit' color={this.state.color} onClick={this.handleOpenModal}/>}>
+              <Modal.Content
+                isOpen={this.state.showModal}
+                >
+                <textfield>Form Submitted</textfield>
+                <button onClick={this.handleCloseModal}>Close</button>
+              </Modal.Content>
             </Modal>
           </Grid.Column>
         </Grid.Row>
@@ -109,6 +123,7 @@ class App extends Component {
     }
     this.setState({ message });
   };
+
 
   textareaChange = (event, props) => { this.setState({ message: props.value }); };
 
