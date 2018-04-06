@@ -2,17 +2,17 @@
 Disaster Alert System (DAS) is a Web Application developed in order to warn the residents of Hawaii of incoming disasters without the risk of false alarms or incorrect labeling.
 
 ##### Build Tools:
+* Node.js
 * React.js
-* JSX
 * Semantic UI
 
 ##### NPM
 
-You must have the latest version of NPM installed to run our Web App
+You must have the latest version of Nodejs and NPM installed to run our Web App
 
 ##### Building DAS
 
-First you must download the necessary files by cloning the github repo or downloading and extracting it.
+Download the necessary files by cloning the github repo or downloading and extracting it.
 
 Install the necessary dependencies using NPM
 
