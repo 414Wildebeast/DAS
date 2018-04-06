@@ -5,14 +5,15 @@ Disaster Alert System (DAS) is a Web Application developed in order to warn the 
 * React.js
 * JSX
 * Semantic UI
+* Node.js
 
 ##### NPM
 
-You must have the latest version of NPM installed to run our Web App
+You must have the latest version of Nodejs and NPM installed to run our Web App
 
 ##### Building DAS
 
-First you must download the necessary files by cloning the github repo or downloading and extracting it.
+Download the necessary files by cloning the github repo or downloading and extracting it.
 
 Install the necessary dependencies using NPM
 
