@@ -2,10 +2,9 @@
 Disaster Alert System (DAS) is a Web Application developed in order to warn the residents of Hawaii of incoming disasters without the risk of false alarms or incorrect labeling.
 
 ##### Build Tools:
-* React.js
-* JSX
-* Semantic UI
 * Node.js
+* React.js
+* Semantic UI
 
 ##### NPM
 
