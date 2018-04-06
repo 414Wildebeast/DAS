@@ -16,8 +16,21 @@ class App extends Component {
       showTv: true,
       showRadio: true,
       showText: true,
+      showModal: false
     };
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
   }
+
+
+handleOpenModal () {
+  this.setState({ showModal: true });
+}
+
+handleCloseModal () {
+  this.setState({ showModal: false });
+}
+
 
   render() {
     return (
@@ -91,9 +104,9 @@ class App extends Component {
 
           <Grid.Column width={5} floated='right'>
             <Modal trigger={<Button floated='right' size='massive' content='Submit' color={this.state.color}
-                                    onClick={this.submit}/>}>
-              <Modal.Content>
-                ' '
+               onClick={this.submit}/>}>
+              <Modal.Content isOpen={this.state.showModal}>
+                <textfield> Form Submitted </textfield>
               </Modal.Content>
             </Modal>
           </Grid.Column>
