@@ -6,7 +6,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      header: 'a test',
+      header: 'TEST',
       color: 'green',
       message: '',
       mediums: [],
@@ -72,21 +72,22 @@ class App extends Component {
         </Grid.Row>
 
         <Grid.Row centered>
-          <Grid.Column width={4}>
+          <Grid.Column width={3} floated='left'>
             <Segment.Group horizontal>
               <Segment color={this.state.color} inverted>
-                <Header as='h1' content={`This is ${this.state.header}`}/>
+                <Header as='h1' content={this.state.header}/>
               </Segment>
               <Segment>
                 <Header as='h1' content={<Checkbox slider onChange={this.sliderChange}/>}/>
               </Segment>
             </Segment.Group>
           </Grid.Column>
-          <Grid.Column width={2} verticalAlign='middle'>
-            <Modal trigger={<Button size='large' content='Submit' color={this.state.color} onClick={this.submit}/>}>
-              <Modal.Conten>
-
-              </Modal.Conten>
+          <Grid.Column width={5} floated='right'>
+            <Modal trigger={<Button floated='right' size='massive' content='Submit' color={this.state.color}
+                                    onClick={this.submit}/>}>
+              <Modal.Content>
+                ' '
+              </Modal.Content>
             </Modal>
           </Grid.Column>
         </Grid.Row>
@@ -113,7 +114,7 @@ class App extends Component {
   textareaChange = (event, props) => { this.setState({ message: props.value }); };
 
   sliderChange = () => {
-    const header = this.state.header === 'REAL' ? 'a test' : 'REAL';
+    const header = this.state.header === 'REAL' ? 'TEST' : 'REAL';
     const color = this.state.color === 'red' ? 'green' : 'red';
     this.setState({ header, color });
   };
