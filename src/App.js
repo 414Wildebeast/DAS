@@ -11,6 +11,8 @@ class App extends Component {
       message: '',
       mediums: [],
       areas: [],
+      showTv: false,
+      showArea: true,
     };
   }
 
@@ -45,14 +47,15 @@ class App extends Component {
               <Segment color={this.state.color} inverted tertiary content='Mediums'/>
               <Segment>
                 <Grid columns={5}>
-                  <Grid.Column><Checkbox label='All'/></Grid.Column>
-                  <Grid.Column><Checkbox label='Sirens'/></Grid.Column>
-                  <Grid.Column><Checkbox label='TV'/></Grid.Column>
-                  <Grid.Column><Checkbox label='Radio'/></Grid.Column>
-                  <Grid.Column><Checkbox label='Text'/></Grid.Column>
+                    {this.state.showAll ? <Grid.Column><Checkbox label='All'/></Grid.Column> : ""}
+                    {this.state.showSiren ? <Grid.Column><Checkbox label='Sirens'/></Grid.Column> : ""}
+                    {this.state.showTv ? <Grid.Column><Checkbox label='TV'/></Grid.Column> : ""}
+                    {this.state.showRadio ? <Grid.Column><Checkbox label='Radio'/></Grid.Column> : ""}
+                    {this.state.showText ? <Grid.Column><Checkbox label='Text'/></Grid.Column> : ""}
                 </Grid>
               </Segment>
             </Segment.Group>
+
 
             <Segment.Group>
               <Segment color={this.state.color} inverted tertiary content='Areas'/>
@@ -75,7 +78,7 @@ class App extends Component {
           <Grid.Column width={4}>
             <Segment.Group horizontal>
               <Segment color={this.state.color} inverted>
-                <Header as='h1' content={`This is ${this.state.header}`}/>
+                <Header as='h1' content={`${this.state.header}`}/>
               </Segment>
               <Segment>
                 <Header as='h1' content={<Checkbox slider onChange={this.sliderChange}/>}/>
@@ -84,13 +87,13 @@ class App extends Component {
           </Grid.Column>
           <Grid.Column width={2} verticalAlign='middle'>
             <Modal trigger={<Button size='large' content='Submit' color={this.state.color} onClick={this.submit}/>}>
-              <Modal.Conten>
-
-              </Modal.Conten>
+              <Modal.Content>
+                "Hello"
+              </Modal.Content>
             </Modal>
           </Grid.Column>
         </Grid.Row>
-
+          {this.state.showBob ? "Bob" : ""}
       </Grid>
     );
   }
