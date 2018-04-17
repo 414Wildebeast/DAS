@@ -16,20 +16,22 @@ class App extends Component {
       showTv: true,
       showRadio: true,
       showText: true,
-      showModal: false
+      showModal: false,
+      modes: [],
+      locations: [],
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
 
-handleOpenModal () {
-  this.setState({ showModal: true });
-}
+  handleOpenModal() {
+    this.setState({ showModal: true });
+  }
 
-handleCloseModal () {
-  this.setState({ showModal: false });
-}
+  handleCloseModal() {
+    this.setState({ showModal: false });
+  }
 
 
   render() {
@@ -63,11 +65,31 @@ handleCloseModal () {
               <Segment color={this.state.color} inverted tertiary content='Mediums'/>
               <Segment>
                 <Grid columns={5}>
-                    {this.state.showAll ? <Grid.Column><Checkbox label='All'/></Grid.Column> : ""}
-                    {this.state.showSiren ? <Grid.Column><Checkbox label='Sirens'/></Grid.Column> : ""}
-                    {this.state.showTv ? <Grid.Column><Checkbox label='TV'/></Grid.Column> : ""}
-                    {this.state.showRadio ? <Grid.Column><Checkbox label='Radio'/></Grid.Column> : ""}
-                    {this.state.showText ? <Grid.Column><Checkbox label='Text'/></Grid.Column> : ""}
+                  {this.state.showAll ?
+                    <Grid.Column>
+                      <Checkbox onChange={this.handleModes} label='All'
+                                checked={this.state.modes.includes('All')}/>
+                    </Grid.Column> : ''}
+                  {this.state.showSiren ?
+                    <Grid.Column>
+                      <Checkbox onChange={this.handleModes} label='Sirens'
+                                checked={this.state.modes.includes('Sirens')}/>
+                    </Grid.Column> : ''}
+                  {this.state.showTv ?
+                    <Grid.Column>
+                      <Checkbox onChange={this.handleModes} label='TV'
+                                checked={this.state.modes.includes('TV')}/>
+                    </Grid.Column> : ''}
+                  {this.state.showRadio ?
+                    <Grid.Column>
+                      <Checkbox onChange={this.handleModes} label='Radio'
+                                checked={this.state.modes.includes('Radio')}/>
+                    </Grid.Column> : ''}
+                  {this.state.showText ?
+                    <Grid.Column>
+                      <Checkbox onChange={this.handleModes} label='Text'
+                                checked={this.state.modes.includes('Text')}/>
+                    </Grid.Column> : ''}
                 </Grid>
               </Segment>
             </Segment.Group>
@@ -77,13 +99,20 @@ handleCloseModal () {
               <Segment color={this.state.color} inverted tertiary content='Areas'/>
               <Segment>
                 <Grid columns={5}>
-                  <Grid.Column><Checkbox label='All'/></Grid.Column>
-                  <Grid.Column><Checkbox label='Big Island'/></Grid.Column>
-                  <Grid.Column><Checkbox label='Maui'/></Grid.Column>
-                  <Grid.Column><Checkbox label='O`ahu'/></Grid.Column>
-                  <Grid.Column><Checkbox label='Kaua`i'/></Grid.Column>
-                  <Grid.Column><Checkbox label='Moloka`i'/></Grid.Column>
-                  <Grid.Column><Checkbox label='Lana`i'/></Grid.Column>
+                  <Grid.Column><Checkbox onChange={this.handleLocations} label='All'
+                                         checked={this.state.locations.includes('All')}/></Grid.Column>
+                  <Grid.Column><Checkbox onChange={this.handleLocations} label='Big Island'
+                                         checked={this.state.locations.includes('Big Island')}/></Grid.Column>
+                  <Grid.Column><Checkbox onChange={this.handleLocations} label='Maui'
+                                         checked={this.state.locations.includes('Maui')}/></Grid.Column>
+                  <Grid.Column><Checkbox onChange={this.handleLocations} label='O`ahu'
+                                         checked={this.state.locations.includes('O`ahu')}/></Grid.Column>
+                  <Grid.Column><Checkbox onChange={this.handleLocations} label='Kaua`i'
+                                         checked={this.state.locations.includes('Kaua`i')}/></Grid.Column>
+                  <Grid.Column><Checkbox onChange={this.handleLocations} label='Moloka`i'
+                                         checked={this.state.locations.includes('Moloka`i')}/></Grid.Column>
+                  <Grid.Column><Checkbox onChange={this.handleLocations} label='Lana`i'
+                                         checked={this.state.locations.includes('Lana`i')}/></Grid.Column>
                 </Grid>
               </Segment>
             </Segment.Group>
@@ -104,14 +133,14 @@ handleCloseModal () {
 
           <Grid.Column width={5} floated='right'>
             <Modal trigger={<Button floated='right' size='massive' content='Submit' color={this.state.color}
-               onClick={this.submit}/>}>
+                                    onClick={this.submit}/>}>
               <Modal.Content isOpen={this.state.showModal}>
-                <textfield> Form Submitted </textfield>
+                <textfield> Form Submitted</textfield>
               </Modal.Content>
             </Modal>
           </Grid.Column>
         </Grid.Row>
-          {this.state.showBob ? "Bob" : ""}
+        {this.state.showBob ? 'Bob' : ''}
       </Grid>
     );
   }
@@ -132,6 +161,23 @@ handleCloseModal () {
   };
 
   textareaChange = (event, props) => { this.setState({ message: props.value }); };
+
+  handleModes = (event, props) => {
+    let modes = this.state.modes;
+    if (props.label === 'All') modes = props.checked ? ['All', 'Sirens', 'TV', 'Radio', 'Text'] : [];
+    else if (props.checked) modes.push(props.label);
+    else modes = modes.filter(mode => mode !== props.label);
+    this.setState({ modes });
+  };
+
+  handleLocations = (event, props) => {
+    let locations = this.state.locations;
+    if (props.label === 'All') locations = props.checked ?
+      ['All', 'Big Island', 'Maui', 'O`ahu', 'Kaua`i', 'Moloka`i', 'Lana`i'] : [];
+    else if (props.checked) locations.push(props.label);
+    else locations = locations.filter(location => location !== props.label);
+    this.setState({ locations });
+  };
 
   sliderChange = () => {
     const header = this.state.header === 'REAL' ? 'TEST' : 'REAL';
