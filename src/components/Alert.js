@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Grid, Button, Header, Checkbox, Segment, TextArea, Dropdown, Form, Modal } from 'semantic-ui-react';
 
-class App extends Component {
+import { db } from '../firebase';
+
+import withAuthorization from './withAuthorization';
+
+class Alert extends Component {
   constructor(props) {
     super(props);
 
@@ -19,11 +23,17 @@ class App extends Component {
       showModal: false,
       modes: [],
       locations: [],
+      authUser: null,
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
+  componentDidMount() {
+    db.onceGetUsers().then(snapshot =>
+        this.setState(() => ({ users: snapshot.val() }))
+    );
+  }
 
   handleOpenModal() {
     this.setState({ showModal: true });
@@ -36,6 +46,7 @@ class App extends Component {
 
   render() {
     return (
+
         <Grid stackable container>
           <Grid.Row/>
           <Grid.Row stretched>
@@ -186,4 +197,6 @@ class App extends Component {
   };
 }
 
-export default App;
+const authCondition = (authUser) => !!authUser;
+
+export default withAuthorization(authCondition)(Alert);
