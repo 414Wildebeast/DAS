@@ -9,21 +9,34 @@ import LogInPage from './LogIn';
 import Alert from './Alert';
 
 import * as routes from './routes';
-const App = () =>
+class App extends React.Component {
+  constructor(props) {
+    super(props);
 
-        <Router>
-          <div>
-            <Navigation authUser={this.state.authUser} />
+    this.state = {
+      authUser: null,
+    };
+  }
 
-            <Route
-                exact path={routes.LOG_IN}
-                component={() => <LogInPage />}
+  render() {
+    return (
+      <Router>
+        <div>
+          <Navigation authUser={this.state.authUser}/>
 
-            />
+          <Route
+            exact path={routes.LOG_IN}
+            component={() => <LogInPage/>}
 
-            <Route exact path={routes.ALERT} component={() => <Alert />} />
+          />
 
-          </div>
-        </Router>
+          <Route exact path={routes.ALERT} component={() => <Alert/>}/>
+
+        </div>
+      </Router>
+    );
+  }
+}
+
 
 export default App;
